@@ -20,8 +20,8 @@ def dominantColors(imgPath, bits):
     total = height * width
     count = 0
     colorRange = np.zeros((int(bits), int(bits), int(bits)))
-    for t in xrange(0, height):
-        for u in xrange(0, width):
+    for t in range(0, height):
+        for u in range(0, width):
             foo = img3[t][u]
             foo1 = foo[0]/divisor1
             foo2 = foo[1]/divisor1
@@ -38,9 +38,9 @@ def colorSorter(testArray):
     arrSize = len(arr)*len(arr)*len(arr)
     color2Darr = np.zeros((arrSize, 2))
     color2Darr = color2Darr.tolist()
-    for v in xrange(0, len(arr)):
-        for x in xrange(0, len(arr[v])):
-            for y in xrange(0, len(arr[x])):
+    for v in range(0, len(arr)):
+        for x in range(0, len(arr[v])):
+            for y in range(0, len(arr[x])):
                 arrValue = arr[v][x][y]
                 colorVal = [v, x, y]
                 color2Darr[sumArr][0] = arrValue
@@ -50,10 +50,10 @@ def colorSorter(testArray):
     arr2 = arr2.tolist()
     zeroCount = arrSize-1
     maxSize = arrSize-1
-    for v in xrange(0,len(color2Darr)):
+    for v in range(0,len(color2Darr)):
         arr2[v] = maxSize
         if color2Darr[v][0] > 1:  
-            for x in xrange(0,len(color2Darr)):
+            for x in range(0,len(color2Darr)):
                 if color2Darr[v][0] > color2Darr[x][0]:
                     arr2[v] -= 1
                 if color2Darr[v][0] == color2Darr[x][0]:
@@ -71,7 +71,7 @@ def colorSorter(testArray):
             zeroCount -= 1
     arr3 = np.zeros((arrSize, 4))
     arr3 = arr3.tolist()
-    for v in xrange(0,len(color2Darr)):
+    for v in range(0,len(color2Darr)):
         arr3[arr2[v]][0] = arr2[v]
         arr3[arr2[v]][1] = v
         arr3[arr2[v]][2] = color2Darr[v][0]
