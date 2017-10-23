@@ -1,11 +1,26 @@
 #I have to make this a bit more readable than the previous one.
 
+import os
 import cv2
 import sys
 import numpy as np
 
 #imgPath = 'C:\\Users\\Samir\\Pictures\\surf.jpg'
 #bits = 8
+def importThings():
+    import cv2
+    import sys
+    import numpy as np
+    import os
+
+
+def resizingFile(imgPath, width, height):
+
+    img = cv2.imread(imgPath)
+    resizedPath = ((imgPath[:-4])+ '_' + str(width) + 'x' + str(height) + '.png')
+    resizeImg = cv2.resize(img, [width,height], interpolation= cv2.INTER_AREA)
+    cv2.imwrite(resizePath, resizeImg)
+
 
 def countPercentage(count, total):
     percentage = int((float(count)/float(total))*100.0)
@@ -51,21 +66,17 @@ def colorSorter(testArray):
     zeroCount = arrSize-1
     maxSize = arrSize-1
     for v in range(0,len(color2Darr)):
+        microCount = 0
         arr2[v] = maxSize
-        if color2Darr[v][0] > 1:  
+        if color2Darr[v][0] >= 1:  
             for x in range(0,len(color2Darr)):
                 if color2Darr[v][0] > color2Darr[x][0]:
                     arr2[v] -= 1
                 if color2Darr[v][0] == color2Darr[x][0]:
-                    if color2Darr[v][1][0] > color2Darr[x][1][0]:
-                        arr2[v] -= 1
-                        break
-                    if color2Darr[v][1][1] > color2Darr[x][1][1]:
-                        arr2[v] -= 1
-                        break
-                    if color2Darr[v][1][2] > color2Darr[x][1][2]:
-                        arr2[v] -= 1
-                        break
+                    for y in range(0, v):
+                        if color2Darr[v][0] == color2Darr[y][0]:
+                            microCount += 1
+                    arr2[v] -= microCount
         if color2Darr[v][0] == 0:
             arr2[v] = zeroCount
             zeroCount -= 1
