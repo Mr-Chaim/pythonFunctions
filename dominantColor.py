@@ -9,8 +9,7 @@ import numpy as np
 
 def countPercentage(count, total):
     percentage = int((float(count)/float(total))*100.0)
-    sys.stdout.write(str(percentage))
-    sys.stdout.flush()
+    print(str(percentage), end="\r", flush=True)
 
 def dominantColors(imgPath, bits):
 
